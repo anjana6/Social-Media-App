@@ -10,10 +10,6 @@ module.exports = function (sequelize,DataTypes){
             type: DataTypes.ENUM('lecturer','demo','student'),
             allowNull: false
         },
-        name: {
-            type: DataTypes.STRING(400),
-            allowNull: false,
-        },
         email: {
             type: DataTypes.STRING(200),
             allowNull: false
@@ -21,6 +17,22 @@ module.exports = function (sequelize,DataTypes){
         student_no: {
             type: DataTypes.STRING(100),
             allowNull: false
+        },
+        password: {
+            type: DataTypes.STRING(300),
+            allowNull: false
+        },
+        name: {
+            type: DataTypes.STRING(400),
+            allowNull: true,
+        },
+        age: {
+            type: DataTypes.INTEGER,
+            allowNull: true
+        },
+        gender: {
+            type: DataTypes.ENUM('femail','mail'),
+            allowNull: true
         },
         created_at: {
             type: DataTypes.DATE,
