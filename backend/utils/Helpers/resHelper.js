@@ -12,7 +12,7 @@ class ResHelper{
         res.status(200).send({
             success: true,
             message: "Updated",
-            data: data,
+            data: null,
           })
     }
 
@@ -20,7 +20,7 @@ class ResHelper{
         res.status(200).send({
             success: true,
             message: "Deleted",
-            data: data,
+            data: null,
           })
     }
 

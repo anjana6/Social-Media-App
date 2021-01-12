@@ -1,5 +1,5 @@
 module.exports = function (sequelize,DataTypes){
-    const UsersSubjects = sequelize.define('users_subjects',{
+    const UsersSubjects = sequelize.define('user_subjects',{
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
@@ -13,6 +13,14 @@ module.exports = function (sequelize,DataTypes){
         subject_id: {
             type: DataTypes.INTEGER,
             allowNull: false
+        },
+        year: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+          },
+        result: {
+            type: DataTypes.STRING(2),
+            allowNull: true
         },
         created_at: {
             type: DataTypes.DATE,

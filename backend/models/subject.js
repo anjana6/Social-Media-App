@@ -29,7 +29,11 @@ module.exports = function(sequelize,DataTypes){
     })
 
     subjects.associate = function(models){
-        subjects.belongsToMany(models.users,{ through: 'users_subjects' })
+        subjects.belongsToMany(models.users,{ 
+            through: 'user_subjects',
+            as: 'users',
+            foreignKey: 'subject_id' 
+        })
     }
 
     return subjects;
