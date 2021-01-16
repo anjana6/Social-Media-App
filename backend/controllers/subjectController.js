@@ -44,6 +44,19 @@ class SubjectController{
         }
     }
 
+    async fetchStudentSubjectByStudentNoAndYear(req,res){
+        try {
+           
+            const year = req.params.year;
+            console.log('uuuuuuuuuuuu',year)
+            const subject =await subjectService.getStudentSubjectByStudentNoAndYear(year,req.body);
+            console.log(subject);
+            resHelper.responseData(res,subject);
+        } catch (error) {
+            resHelper.serverFailing(res,error.message)
+        }
+    }
+
 }
 
 const subjectController = new SubjectController();

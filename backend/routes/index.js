@@ -15,5 +15,6 @@ route.post('/api/v1/subject',subjectController.addSubject); // remove after crea
 route.post('/api/v1/subject/user',subjectController.addSubjectByUserId) // remove after the project
 route.get('/api/v1/subject/:userId/:year',subjectController.fetchSubjectByUserIdAndYear);
 route.put('/api/v1/subject/result/:id',subjectController.addSubjectResult);
+route.get('/api/v1/user/subject/:year',subjectController.fetchStudentSubjectByStudentNoAndYear)
 
 export default route;

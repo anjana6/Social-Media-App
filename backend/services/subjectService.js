@@ -36,6 +36,11 @@ class SubjectService{
         return subjectRepository.updateResult(id,body);
     }
 
+    getStudentSubjectByStudentNoAndYear(year,requestBody){
+        const {studentNo} = requestBody;
+        return subjectRepository.getStudentSubjectByStudentNoAndYear(year,studentNo);
+    }
+
 }
 
 const subjectService = new SubjectService();

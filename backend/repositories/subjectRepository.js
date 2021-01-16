@@ -25,6 +25,20 @@ class SubjectRepository{
         })
     }
 
+    async getStudentSubjectByStudentNoAndYear(year,studentNo){
+        console.log('sssssssss',studentNo)
+        return User.findOne({
+            include: [{
+                model: Subject,
+                as: 'subjects',
+                through: { where: { year: year } }
+            }],
+            where: {
+                student_no: studentNo
+            }
+        })
+    }
+
     updateResult(id,body){
         return UserSubject.update(body,{
             where: {
