@@ -15,11 +15,11 @@ const NavigationBar = () => {
       </span>
 
       <NavDropdown title='More' id='basic-nav-dropdown'>
-        <NavDropdown.Item href='#action/3.1'>About</NavDropdown.Item>
-        <NavDropdown.Item href='#action/3.2'>Details</NavDropdown.Item>
-        <NavDropdown.Item href='#action/3.3'>Contact</NavDropdown.Item>
+        <NavDropdown.Item>About</NavDropdown.Item>
+        <NavDropdown.Item>Details</NavDropdown.Item>
+        <NavDropdown.Item>Contact</NavDropdown.Item>
         <NavDropdown.Divider />
-        <NavDropdown.Item href='#action/3.4'>Separated link</NavDropdown.Item>
+        <NavDropdown.Item>Separated link</NavDropdown.Item>
       </NavDropdown>
     </Navbar>
   );

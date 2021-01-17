@@ -5,6 +5,8 @@ import {
   LOGIN_FAILED,
 } from './types';
 
+import userServices from '../services/UserServices';
+
 export const getCurrentProfile = () => async (dispatch) => {
   try {
     const res = ''; //await axios.get('/api/profile/me');
@@ -24,9 +26,10 @@ export const getCurrentProfile = () => async (dispatch) => {
 };
 
 export const loginUser = (data) => async (dispatch) => {
-  console.log(data);
+  console.log('action', data);
   try {
-    const res = '';
+    const res = await userServices.login(data);
+    console.log('response', res);
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res?.data,

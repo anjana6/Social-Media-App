@@ -53,6 +53,7 @@ const Login = ({ loginUser }) => {
 
   const submitForm = () => {
     loginUser(state);
+    console.log(state);
     // console.log(state.email, state.password);
   };
   return (
@@ -65,7 +66,7 @@ const Login = ({ loginUser }) => {
           Sign in
         </Typography>
 
-        <form className={classes.form} noValidate onSubmit={submitForm}>
+        <form className={classes.form} onSubmit={submitForm}>
           <TextField
             variant='outlined'
             margin='normal'
@@ -76,7 +77,7 @@ const Login = ({ loginUser }) => {
             name='email'
             value={state.email}
             onChange={handleChange}
-            autoFocus
+            //autoFocus
           />
           <TextField
             variant='outlined'

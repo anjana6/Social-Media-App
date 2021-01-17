@@ -1,6 +1,7 @@
 export const API_URL = process.env.API_URL;
-
+console.log(API_URL);
 export const API_PATH = API_URL + 'api/v1';
+console.log('apiPath', API_PATH);
 
 export const API = {
   addUserPassword: `${API_PATH}/user/temp`,
