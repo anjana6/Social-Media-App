@@ -2,14 +2,12 @@ import HttpService from './HttpService';
 import { API } from '../utils/config';
 class UserServices extends HttpService {
   login = async (payload) => {
+    console.log(payload);
     return await this.sendRequest({
       method: 'POST',
       url: API.login,
       responseType: 'json',
       data: payload,
-      headers: {
-        'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
-      },
     });
   };
   createProfile = async (payload) => {
@@ -28,6 +26,15 @@ class UserServices extends HttpService {
       responseType: 'json',
     });
   };
+
+  // uploadPost = async (payload) => {
+  //   return await this.sendRequest({
+  //     method: 'POST',
+  //     url: API.createProfile + '/' + id,
+  //     responseType: 'json',
+  //     data: payload,
+  //   });
+  // };
 
   //   updateApplicant = async (uid, id, payload) => {
   //     return await this.sendRequest({

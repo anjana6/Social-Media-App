@@ -7,6 +7,7 @@ import Login from './componet/Login/Login';
 import UserProfile from './views/UserProfile';
 import EditProfile from './views/EditProfile/EditProfile';
 import AddResults from './views/AddResults/AddResults';
+import CreatePost from './views/CreatePost/CreatePost';
 function App() {
   return (
     <>
@@ -19,6 +20,7 @@ function App() {
           <Route exact path='/profile' component={UserProfile} />
           <Route exact path='/Edit-profile' component={EditProfile} />
           <Route exact path='/Add-Results' component={AddResults} />
+          <Route exact path='/create-post' component={CreatePost} />
         </Switch>
       </BrowserRouter>
     </>

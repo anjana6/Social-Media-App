@@ -3,6 +3,7 @@ import bcrypt from 'bcrypt';
 
 class UserService {
   async loginUser(requestBody) {
+    console.log(JSON.stringify(requestBody));
     const { email, password } = requestBody;
 
     const user = await userRepository.fetchUserByEmail(email);

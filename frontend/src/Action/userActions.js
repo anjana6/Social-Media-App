@@ -26,7 +26,6 @@ export const getCurrentProfile = () => async (dispatch) => {
 };
 
 export const loginUser = (data) => async (dispatch) => {
-  console.log('action', data);
   try {
     const res = await userServices.login(data);
     console.log('response', res);
