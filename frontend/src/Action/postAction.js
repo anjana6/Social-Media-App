@@ -3,11 +3,11 @@ import { CREATE_POST_FAIL, CREATE_POST_SUCCESS } from './types';
 export const postAction = (post) => (dispatch) => {
   const { title, body, url } = post;
 
-  fetch('http://localhost:5000/post/createpost', {
+  fetch('http://localhost:4000/post/createpost', {
     method: 'post',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: 'Bearer ' + localStorage.getItem('jwt'),
+      //  Authorization: 'Bearer ' + localStorage.getItem('jwt'),
     },
     body: JSON.stringify({
       title,
