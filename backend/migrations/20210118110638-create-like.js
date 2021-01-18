@@ -2,12 +2,12 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('user_subjects',{
+    await queryInterface.dropTable('likes',{
       id: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         autoIncrement: true,
-        primaryKey: true,
-        allowNull: false
+        primaryKey: true
       },
       user_id: {
           type: Sequelize.INTEGER,
@@ -17,25 +17,17 @@ module.exports = {
             key: "id",
           },
       },
-      subject_id: {
-          type: Sequelize.INTEGER,
-          allowNull: false,
-          references: {
-            model: "subjects",
-            key: "id",
-          },
-      },
-      year: {
+      post_id: {
         type: Sequelize.INTEGER,
-        allowNull: false
-      },
-      result: {
-        type: Sequelize.STRING(2),
-        allowNull: true
+        allowNull: false,
+        references: {
+          model: "posts",
+          key: "id",
+        },
       },
       created_at: {
-        type: Sequelize.DATE,
-        allowNull: false,
+          type: Sequelize.DATE,
+          allowNull: false,
       },
       updated_at: {
           type: Sequelize.DATE,
@@ -45,6 +37,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('user_subjects')
+    await queryInterface.dropTable('likes')
   }
 };

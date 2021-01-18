@@ -13,6 +13,10 @@ module.exports = {
           type: Sequelize.ENUM('lecturer','demo','student'),
           allowNull: false
       },
+      name: {
+        type: Sequelize.STRING(400),
+        allowNull: true,
+      },
       email: {
           type: Sequelize.STRING(200),
           allowNull: false
@@ -25,26 +29,14 @@ module.exports = {
         type: Sequelize.STRING(300),
         allowNull: false
     },
-    name: {
-        type: Sequelize.STRING(400),
-        allowNull: true,
+    created_at: {
+        type: Sequelize.DATE,
+        allowNull: false
     },
-    age: {
-        type: Sequelize.INTEGER,
-        allowNull: true
-    },
-    gender: {
-        type: Sequelize.ENUM('femail','mail'),
-        allowNull: true
-    },
-      created_at: {
-          type: Sequelize.DATE,
-          allowNull: false
-      },
-      updated_at: {
-          type: Sequelize.DATE,
-          allowNull: false
-      }
+    updated_at: {
+        type: Sequelize.DATE,
+        allowNull: false
+    }
     })
   },
 

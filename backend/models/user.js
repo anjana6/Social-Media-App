@@ -58,6 +58,11 @@ module.exports = function (sequelize, DataTypes) {
       as: 'subjects',
       foreignKey: 'user_id',
     });
+
+    users.hasMany(models.comments, {foreignKey: "user_id"});
+    users.hasMany(models.likes, {foreignKey:"user_id"});
+    users.hasMany(models.posts, {foreignKey: "user_id"});
+    users.hasOne(models.profiles, {foreignKey: "user_id"})
   };
 
   return users;
