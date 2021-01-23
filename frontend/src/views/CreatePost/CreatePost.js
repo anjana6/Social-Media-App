@@ -7,9 +7,9 @@ const CreatePost = () => {
   const history = useHistory();
 
   const [title, SetTitle] = useState('');
-  const [body, SetBody] = useState('');
+  const [description, setDescription] = useState('');
   const [image, SetImage] = useState('');
-  const [url, SetUrl] = useState('');
+  const [postUrl, setPostUrl] = useState('');
 
   const dispatch = useDispatch();
 
@@ -25,14 +25,14 @@ const CreatePost = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        SetUrl(data.url);
+        setPostUrl(data.url);
       })
       .catch((error) => {
         console.log(error);
       });
 
-    console.log({ title, body, image, url });
-    dispatch(postAction({ title, body, image, url }));
+    console.log({ title, description, image, postUrl });
+    dispatch(postAction({ title, description, image, postUrl }));
 
     //  fetch("http://localhost:5000/post/createpost", {
     //         method: "post",
@@ -78,9 +78,9 @@ const CreatePost = () => {
       />
       <input
         type='text'
-        value={body}
+        value={description}
         onChange={(e) => {
-          SetBody(e.target.value);
+          setDescription(e.target.value);
         }}
         placeholder='body'
       />

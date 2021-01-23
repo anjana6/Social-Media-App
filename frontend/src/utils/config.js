@@ -8,6 +8,6 @@ export const API = {
   login: `${API_PATH}/user/login`,
   createProfile: `${API_PATH}/user/profile`,
   findUser: `${API_PATH}/user`,
-
+  post: `http://localhost:4000/api/v1/podt`,
   addSubject: `${API_PATH}/subject`,
 };
