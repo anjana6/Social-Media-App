@@ -27,9 +27,10 @@ export const getCurrentProfile = () => async (dispatch) => {
   }
 };
 
-export const updateProfile = (id, data) => async (dispatch) => {
+export const updateProfile = (data) => async (dispatch) => {
+  console.log('action', data);
   try {
-    const res = await userServices.updateProfile(id, data);
+    //  const res = await userServices.updateProfile(id, data);
     dispatch({
       type: UPDATE_PROFILE,
       payload: Response.data,

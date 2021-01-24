@@ -10,8 +10,11 @@ import {
 } from 'react-bootstrap';
 
 import elon from '../../assets/ellon.jpg';
+import { updateProfile } from '../../Action/userActions';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-export default function EditProfile() {
+const EditProfile = ({ updateProfile }) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [city, setCity] = useState('');
@@ -20,7 +23,7 @@ export default function EditProfile() {
   const [image, setImage] = useState('');
   const [university, setUniversity] = useState('');
   const [status, setStatus] = useState('');
-  const [birthday, setBirthDay] = useState('1985-08-01');
+  const [birthday, setBirthDay] = useState('2020-08-01');
   const [profileUrl, setProfileUrl] = useState('');
   const [school, setSchool] = useState('');
   const [homeTown, setHomeTown] = useState('');
@@ -47,6 +50,25 @@ export default function EditProfile() {
     console.log(input);
   };
 
+  const handleBirthDate = (input) => {
+    setBirthDay(input);
+  };
+
+  const handleStatus = (input) => {
+    setStatus(input);
+  };
+
+  const handleSchool = (input) => {
+    setSchool(input);
+  };
+  const handleUniversity = (input) => {
+    setUniversity(input);
+  };
+
+  const handleHomeTown = (input) => {
+    setHomeTown(input);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = new FormData();
@@ -60,17 +82,57 @@ export default function EditProfile() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data.url);
         setProfileUrl(data.url);
       })
       .catch((error) => {
         console.log(error);
       });
 
-    //  setProfileUrl(data.data)
+    console.log(
+      firstName,
+      lastName,
+      city,
+      hobby,
+      gender,
+      profileUrl,
+      status,
+      birthday,
+      school,
+      university,
+      homeTown,
+      currentCity
+    );
+    const isValid =
+      firstName &&
+      lastName &&
+      city &&
+      hobby &&
+      gender &&
+      image &&
+      profileUrl &&
+      birthday &&
+      school &&
+      currentCity &&
+      university &&
+      status &&
+      homeTown &&
+      currentCity;
 
-    // console.log('jj', firstName, lastName, city, hobby, gender, image);
-    const isValid = firstName && lastName && city && hobby && gender && image;
+    // if (isValid) {
+    updateProfile({
+      firstName,
+      lastName,
+      city,
+      hobby,
+      gender,
+      profileUrl,
+      status,
+      birthday,
+      school,
+      university,
+      homeTown,
+      currentCity,
+    });
   };
 
   return (
@@ -111,7 +173,7 @@ export default function EditProfile() {
               <Form.Control
                 type='date'
                 value={birthday}
-                onChange={(e) => setBirthDay(e.target.value)}
+                onChange={(e) => handleBirthDate(e.target.value)}
                 placeholder='Password'
               />
             </Form.Group>
@@ -120,7 +182,7 @@ export default function EditProfile() {
               <Form.Label>Status</Form.Label>
               <Form.Control
                 type='text'
-                onChange={(e) => setStatus(e.target.value)}
+                onChange={(e) => handleStatus(e.target.value)}
                 placeholder='Status'
               />
             </Form.Group>
@@ -130,7 +192,7 @@ export default function EditProfile() {
               <Form.Control
                 type='text'
                 value={school}
-                onChange={(e) => setSchool(e.target.value)}
+                onChange={(e) => handleSchool(e.target.value)}
                 placeholder='Status'
               />
             </Form.Group>
@@ -140,7 +202,7 @@ export default function EditProfile() {
               <Form.Control
                 type='text'
                 value={university}
-                onChange={(e) => setUniversity(e.target.value)}
+                onChange={(e) => handleUniversity(e.target.value)}
                 placeholder='Status'
               />
             </Form.Group>
@@ -150,7 +212,7 @@ export default function EditProfile() {
               <Form.Control
                 type='text'
                 value={homeTown}
-                onChange={(e) => setHomeTown(e.target.value)}
+                onChange={(e) => handleHomeTown(e.target.value)}
                 placeholder='Status'
               />
             </Form.Group>
@@ -170,7 +232,7 @@ export default function EditProfile() {
               <Form.Control
                 type='text'
                 onChange={(e) => handleHobby(e.target.value)}
-                placeholder='Password'
+                placeholder='Hobby'
               />
             </Form.Group>
             <Form.Group controlId='formBasicPassword'>
@@ -204,4 +266,10 @@ export default function EditProfile() {
       </Row>
     </div>
   );
-}
+};
+
+EditProfile.prototype = {
+  updateProfile: PropTypes.func.isRequired,
+};
+
+export default connect(null, { updateProfile })(EditProfile);
