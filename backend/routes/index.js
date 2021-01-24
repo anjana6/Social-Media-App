@@ -1,5 +1,6 @@
 import express from 'express';
 import commentController from '../controllers/commentController';
+import likeController from '../controllers/likeController';
 import postController from '../controllers/postController';
 import profileController from '../controllers/profileController';
 import subjectController from '../controllers/subjectController';
@@ -19,12 +20,16 @@ route.put('/api/v1/profile/:profileId',profileController.updateProfile);
 route.get('/api/v1/profile/:userId',profileController.fetchProfileByUserId); 
 
 //Post
-route.post('/api/v1/podt', postController.createPost);
+route.post('/api/v1/post', postController.createPost);
 route.delete('/api/v1/post/:postId', postController.deletePost);
+route.get('/api/v1/posts',postController.fetchPosts);
 
 //comment
 route.post('/api/v1/comment', commentController.createComment);
 route.delete('/api/v1/comment/:commentId', commentController.deleteCommnet);
+
+//like 
+route.put('/api/v1/like/:postId',likeController.updateLike);
 
 //subject
 route.post('/api/v1/subject',subjectController.addSubject); // remove after create the project

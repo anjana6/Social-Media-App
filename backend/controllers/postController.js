@@ -3,6 +3,16 @@ import resHelper from "../utils/Helpers/resHelper";
 
 class PostController{
 
+    async fetchPosts(req,res){
+        try {
+            const posts = await postService.fetchPosts();
+            resHelper.responseData(res,posts)
+        } catch (error) {
+            console.log(error);
+            resHelper.serverFailing(res,error.message)
+        }
+    }
+
     async createPost(req,res){
         try {
             const post = await postService.createPost(req.body);

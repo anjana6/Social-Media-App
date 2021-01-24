@@ -19,6 +19,10 @@ class PostService{
         return postRepository.deletePost(postId)
     }
 
+    fetchPosts(){
+        return postRepository.fetchPosts();
+    }
+
 }
 
 const postService = new PostService();

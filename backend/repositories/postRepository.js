@@ -1,4 +1,6 @@
 const Post = require('../models').posts;
+const Comment = require('../models').comments;
+const Like = require('../models').likes;
 
 class PostRepository{
 
@@ -11,6 +13,12 @@ class PostRepository{
             where: {
                 id: postId
             }
+        })
+    }
+
+    fetchPosts(){
+        return Post.findAll({
+            include:[{model: Comment}, {model: Like}]
         })
     }
 

@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('likes',{
+    await queryInterface.createTable('likes',{
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,

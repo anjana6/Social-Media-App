@@ -14,10 +14,11 @@ class ProfileController{
 
     async updateProfile(req,res){
         try {
-            profileId = req.params.profileId;
+            const profileId = req.params.profileId;
             await profileService.updateProfile(profileId,req.body);
-            resHelper.created(res)
+            resHelper.created(res);
         } catch (error) {
+            console.log(error);
             resHelper.serverFailing(res,error.message);
         }
     }
