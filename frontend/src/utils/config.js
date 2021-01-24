@@ -10,4 +10,5 @@ export const API = {
   findUser: `${API_PATH}/user`,
   post: `http://localhost:4000/api/v1/podt`,
   addSubject: `${API_PATH}/subject`,
+  updateProfile: `${API_PATH}//profile`,
 };

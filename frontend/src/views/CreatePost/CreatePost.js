@@ -14,6 +14,7 @@ const CreatePost = () => {
   const dispatch = useDispatch();
 
   const PostDetails = () => {
+    console.log(image);
     const data = new FormData();
     data.append('file', image);
 
