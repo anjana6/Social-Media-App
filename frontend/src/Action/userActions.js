@@ -3,6 +3,8 @@ import {
   GET_PROFILE_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAILED,
+  UPDATE_PROFILE,
+  UPDATE_PROFILE_ERROR,
 } from './types';
 
 import userServices from '../services/UserServices';
@@ -17,6 +19,25 @@ export const getCurrentProfile = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: GET_PROFILE_ERROR,
+      payload: {
+        msg: error?.response?.statusText,
+        status: error?.response?.status,
+      },
+    });
+  }
+};
+
+export const updateProfile = (data) => async (dispatch) => {
+  console.log('action', data);
+  try {
+    //  const res = await userServices.updateProfile(id, data);
+    dispatch({
+      type: UPDATE_PROFILE,
+      payload: Response.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: UPDATE_PROFILE_ERROR,
       payload: {
         msg: error?.response?.statusText,
         status: error?.response?.status,

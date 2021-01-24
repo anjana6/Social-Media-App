@@ -8,14 +8,26 @@ import {
   Image,
   Row,
 } from 'react-bootstrap';
+
 import elon from '../../assets/ellon.jpg';
-export default function EditProfile() {
+import { updateProfile } from '../../Action/userActions';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
+const EditProfile = ({ updateProfile }) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [city, setCity] = useState('');
   const [hobby, setHobby] = useState('');
   const [gender, setGender] = useState('');
   const [image, setImage] = useState('');
+  const [university, setUniversity] = useState('');
+  const [status, setStatus] = useState('');
+  const [birthday, setBirthDay] = useState('2020-08-01');
+  const [profileUrl, setProfileUrl] = useState('');
+  const [school, setSchool] = useState('');
+  const [homeTown, setHomeTown] = useState('');
+  const [currentCity, setCurrentCity] = useState('');
 
   const handleFirstName = (input) => {
     setFirstName(input);
@@ -38,9 +50,89 @@ export default function EditProfile() {
     console.log(input);
   };
 
-  const handleSubmit = () => {
-    // console.log('jj', firstName, lastName, city, hobby, gender, image);
-    const isValid = firstName && lastName && city && hobby && gender && image;
+  const handleBirthDate = (input) => {
+    setBirthDay(input);
+  };
+
+  const handleStatus = (input) => {
+    setStatus(input);
+  };
+
+  const handleSchool = (input) => {
+    setSchool(input);
+  };
+  const handleUniversity = (input) => {
+    setUniversity(input);
+  };
+
+  const handleHomeTown = (input) => {
+    setHomeTown(input);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = new FormData();
+    data.append('file', image);
+
+    data.append('upload_preset', 'insta-clone');
+    data.append('cloud_name', 'ddeg8sl19');
+    fetch('https://api.cloudinary.com/v1_1/ddeg8sl19/image/upload', {
+      method: 'post',
+      body: data,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setProfileUrl(data.url);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    console.log(
+      firstName,
+      lastName,
+      city,
+      hobby,
+      gender,
+      profileUrl,
+      status,
+      birthday,
+      school,
+      university,
+      homeTown,
+      currentCity
+    );
+    const isValid =
+      firstName &&
+      lastName &&
+      city &&
+      hobby &&
+      gender &&
+      image &&
+      profileUrl &&
+      birthday &&
+      school &&
+      currentCity &&
+      university &&
+      status &&
+      homeTown &&
+      currentCity;
+
+    // if (isValid) {
+    updateProfile({
+      firstName,
+      lastName,
+      city,
+      hobby,
+      gender,
+      profileUrl,
+      status,
+      birthday,
+      school,
+      university,
+      homeTown,
+      currentCity,
+    });
   };
 
   return (
@@ -77,11 +169,70 @@ export default function EditProfile() {
             </Form.Group>
 
             <Form.Group controlId='formBasicPassword'>
+              <Form.Label>Birthday</Form.Label>
+              <Form.Control
+                type='date'
+                value={birthday}
+                onChange={(e) => handleBirthDate(e.target.value)}
+                placeholder='Password'
+              />
+            </Form.Group>
+
+            <Form.Group controlId='formBasicPassword'>
+              <Form.Label>Status</Form.Label>
+              <Form.Control
+                type='text'
+                onChange={(e) => handleStatus(e.target.value)}
+                placeholder='Status'
+              />
+            </Form.Group>
+
+            <Form.Group controlId='formBasicPassword'>
+              <Form.Label>School</Form.Label>
+              <Form.Control
+                type='text'
+                value={school}
+                onChange={(e) => handleSchool(e.target.value)}
+                placeholder='Status'
+              />
+            </Form.Group>
+
+            <Form.Group controlId='formBasicPassword'>
+              <Form.Label>University</Form.Label>
+              <Form.Control
+                type='text'
+                value={university}
+                onChange={(e) => handleUniversity(e.target.value)}
+                placeholder='Status'
+              />
+            </Form.Group>
+
+            <Form.Group controlId='formBasicPassword'>
+              <Form.Label>Home Town</Form.Label>
+              <Form.Control
+                type='text'
+                value={homeTown}
+                onChange={(e) => handleHomeTown(e.target.value)}
+                placeholder='Status'
+              />
+            </Form.Group>
+
+            <Form.Group controlId='formBasicPassword'>
+              <Form.Label>Current City</Form.Label>
+              <Form.Control
+                type='text'
+                value={currentCity}
+                onChange={(e) => setCurrentCity(e.target.value)}
+                placeholder='Status'
+              />
+            </Form.Group>
+
+            <Form.Group controlId='formBasicPassword'>
               <Form.Label>Hobby</Form.Label>
               <Form.Control
                 type='text'
                 onChange={(e) => handleHobby(e.target.value)}
-                placeholder='Password'
+                placeholder='Hobby'
               />
             </Form.Group>
             <Form.Group controlId='formBasicPassword'>
@@ -100,7 +251,7 @@ export default function EditProfile() {
                 id='exampleFormControlFile1'
                 label='Upload Your Profile Picture'
                 accept='image/x-png,image/gif,image/jpeg'
-                onChange={(e) => handleImage(e.target.files[0].name)}
+                onChange={(e) => handleImage(e.target.files[0])}
               />
             </Form.Group>
 
@@ -115,4 +266,10 @@ export default function EditProfile() {
       </Row>
     </div>
   );
-}
+};
+
+EditProfile.prototype = {
+  updateProfile: PropTypes.func.isRequired,
+};
+
+export default connect(null, { updateProfile })(EditProfile);

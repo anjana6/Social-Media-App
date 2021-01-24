@@ -36,14 +36,14 @@ class UserServices extends HttpService {
   //   });
   // };
 
-  //   updateApplicant = async (uid, id, payload) => {
-  //     return await this.sendRequest({
-  //       method: 'PUT',
-  //       url: API.user + '/' + uid + '/applicants/' + id,
-  //       responseType: 'json',
-  //       data: payload,
-  //     });
-  //   };
+  updateProfile = async (id, payload) => {
+    return await this.sendRequest({
+      method: 'PUT',
+      url: API.updateProfile + '/' + id,
+      responseType: 'json',
+      data: payload,
+    });
+  };
 }
 
 const userServices = new UserServices();

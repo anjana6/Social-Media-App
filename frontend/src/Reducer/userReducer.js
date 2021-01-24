@@ -3,6 +3,8 @@ import {
   GET_PROFILE_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAILED,
+  UPDATE_PROFILE,
+  UPDATE_PROFILE_ERROR,
 } from '../Action/types';
 
 const initialState = {
@@ -38,6 +40,11 @@ export default function (state = initialState, action) {
           msg: payload.msg,
           status: payload.status,
         },
+      };
+    case UPDATE_PROFILE:
+      return {
+        ...state,
+        loading: false,
       };
     default:
       return state;
