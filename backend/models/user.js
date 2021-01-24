@@ -28,14 +28,6 @@ module.exports = function (sequelize, DataTypes) {
         type: DataTypes.STRING(400),
         allowNull: true,
       },
-      age: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
-      },
-      gender: {
-        type: DataTypes.ENUM('femail', 'mail'),
-        allowNull: true,
-      },
       created_at: {
         type: DataTypes.DATE,
         allowNull: false,

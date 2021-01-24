@@ -46,21 +46,30 @@ export const updateProfile = (data) => async (dispatch) => {
   }
 };
 
-export const loginUser = (data) => async (dispatch) => {
-  try {
-    const res = await userServices.login(data);
-    console.log('response', res);
-    dispatch({
-      type: LOGIN_SUCCESS,
-      payload: res?.data,
-    });
-  } catch (error) {
-    dispatch({
-      type: LOGIN_FAILED,
-      payload: {
-        msg: error?.response?.statusText,
-        status: error?.response?.status,
-      },
-    });
+// export const loginUser = (data) => async (dispatch) => {
+//   try {
+//     const res = await userServices.login(data);
+//     console.log('response', res);
+//     dispatch({
+//       type: LOGIN_SUCCESS,
+//       payload: res?.data,
+//     });
+//   } catch (error) {
+//     dispatch({
+//       type: LOGIN_FAILED,
+//       payload: {
+//         msg: error?.response?.statusText,
+//         status: error?.response?.status,
+//       },
+//     });
+//   }
+// };
+
+export const loginUser = (data) => {
+  return {
+    type: LOGIN_SUCCESS,
+    payload: data
   }
 };
+
+

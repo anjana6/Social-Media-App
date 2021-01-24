@@ -16,7 +16,9 @@ import Container from '@material-ui/core/Container';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import userServices from '../../services/UserServices';
 import { loginUser } from '../../Action/userActions';
+import { ContactsRounded } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -44,6 +46,7 @@ const Login = ({ loginUser }) => {
     email: '',
     password: '',
   });
+
   const handleChange = (e) => {
     setState({
       ...state,
@@ -51,11 +54,23 @@ const Login = ({ loginUser }) => {
     });
   };
 
-  const submitForm = () => {
-    loginUser(state);
-    console.log(state);
-    // console.log(state.email, state.password);
+  const submitForm = async(e) => {
+    e.preventDefault();
+    // loginUser(state);
+    // console.log(state);
+    const payload = {
+      email: state.email,
+      password: state.password
+    }
+    try {
+      const response = await userServices.loginUser(payload);
+      loginUser(response.data.data);
+      setState({email:'',password: ''})
+    } catch (error) {
+      console.log(error);
+    }  
   };
+
   return (
     <Container component='main' maxWidth='xs'>
       <div className={classes.paper}>

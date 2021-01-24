@@ -1,5 +1,6 @@
 import userRepository from '../repositories/userRepository';
 import bcrypt from 'bcrypt';
+import jwtHelper from '../utils/Helpers/jwtHelper';
 
 class UserService {
   async loginUser(requestBody) {
@@ -14,19 +15,17 @@ class UserService {
     if (!isMatch) {
       throw new Error('Your password is not Match');
     }
-    return user;
+
+    const token = jwtHelper.createToken(user.id,user.user_type);
+    const loginUser = {
+      id: user.id,
+      name: user.name,
+      usertype: user.user_type,
+      studentNo: user.student_no
+    }
+    return {loginUser,token};
   }
 
-  // createProfile(userId, requestBody) {
-  //   const { name, age, gender } = requestBody;
-
-  //   const body = {
-  //     name: name,
-  //     age: age,
-  //     gender: gender,
-  //   };
-  //   return userRepository.updateUser(userId, body);
-  // }
 
   async addUser(requestBody) {
     //remove after create the project

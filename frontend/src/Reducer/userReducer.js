@@ -8,6 +8,8 @@ import {
 } from '../Action/types';
 
 const initialState = {
+  user: null,
+  token: null,
   profile: null,
   profiles: [],
   posts: [{}],
@@ -21,17 +23,18 @@ export default function (state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
+    case LOGIN_SUCCESS:
+      return {
+        ...state,token:payload.token,user:payload.loginUser,
+        loading: false,
+      };
     case GET_PROFILE:
       return {
         ...state,
         profile: payload,
         loading: false,
       };
-    case LOGIN_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-      };
+    
     case GET_PROFILE_ERROR:
     case LOGIN_FAILED:
       return {
