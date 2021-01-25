@@ -14,6 +14,14 @@ module.exports = function(sequelize,DataTypes){
             type: DataTypes.STRING(300),
             allowNull: false
         },
+        year: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        semester: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
         created_at: {
             type: DataTypes.DATE,
             allowNull: false

@@ -17,6 +17,14 @@ module.exports = {
           type: Sequelize.STRING(300),
           allowNull: false
       },
+      year: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
+      semester: {
+          type: Sequelize.INTEGER,
+          allowNull: false
+      },
       created_at: {
           type: Sequelize.DATE,
           allowNull: false

@@ -14,10 +14,13 @@ class SubjectRepository{
 
     async fetchSubjectByUserIdAndYear(userId,year){
        return User.findOne({
+            attributes: [],
             include: [{
                 model: Subject,
                 as: 'subjects',
-                through: { where: { year: year } }
+                where: { 
+                    year: year 
+                } 
             }],
             where: {
                 id: userId

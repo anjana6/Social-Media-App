@@ -25,10 +25,6 @@ module.exports = {
             key: "id",
           },
       },
-      year: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-      },
       result: {
         type: Sequelize.STRING(2),
         allowNull: true

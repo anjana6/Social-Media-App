@@ -12,12 +12,11 @@ class SubjectService{
     }
 
     addSubjectByUserId(requestBody){
-        const {userId,subjectId,year} = requestBody; //remove after the project created
+        const {userId,subjectId} = requestBody; //remove after the project created
 
         const body = {
             user_id: userId,
             subject_id: subjectId,
-            year: year
         }
 
         return subjectRepository.addSubjectByUserId(body);
